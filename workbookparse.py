@@ -1,5 +1,5 @@
 #!/usr/bin/python3 
-#This script parses 
+#This script extracts data from a workbook of hundreds of excel sheets
 #
 
 
