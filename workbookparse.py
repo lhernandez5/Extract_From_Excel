@@ -7,14 +7,14 @@ import xlrd, datetime, xlwt
 from numbers import Number
 from decimal import Decimal
 
-wb=xlrd.open_workbook('/Users/luzhernandez/Copy of TTI Leases-combined file.xlsx')
+wb=xlrd.open_workbook('/Users/hdz/Leases file.xlsx')
 wS=xlwt.Workbook()
 ws=wS.add_sheet("Sheet1")
 
 for s in wb.sheets():
    print ('Sheet: ', s.name)
 print("\nYour file parsing was successful!")
-print("The number of worksheets in Copy of TTI Leases-combined: {0}\n".format(wb.nsheets))
+print("The number of worksheets in Leases: {0}\n".format(wb.nsheets))
 ws.write(0,0,'Branch Code')
 ws.write(0,1,'Branch Name')
 ws.write(0,2,'Lease Code')
