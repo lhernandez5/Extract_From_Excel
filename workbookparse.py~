@@ -1,21 +1,20 @@
 #!/usr/bin/python3 
 #This script extracts data from a workbook of hundreds of excel sheets
+#
+
 
 import xlrd, datetime, xlwt
 from numbers import Number
 from decimal import Decimal
 
-#open excel workbook wb and write to a new workbook ws and create a new sheet 
-wb=xlrd.open_workbook('/Users/hdz/Leases_file.xlsx')
+wb=xlrd.open_workbook('/Users/hdz/Leases file.xlsx')
 wS=xlwt.Workbook()
 ws=wS.add_sheet("Sheet1")
 
-#loop through each sheet in wb workbook
 for s in wb.sheets():
    print ('Sheet: ', s.name)
 print("\nYour file parsing was successful!")
 print("The number of worksheets in Leases: {0}\n".format(wb.nsheets))
-
 ws.write(0,0,'Branch Code')
 ws.write(0,1,'Branch Name')
 ws.write(0,2,'Lease Code')
@@ -33,11 +32,8 @@ ws.write(0,13,'Email')
 ws.write(0,14,'Contact')
 ws.write(0,15,'Space')
 ws.write(0,16,'Base Yr')
-
-#for each sheet in wb 
 counter=0
 for s in wb.sheets():
-#Go to a specific cell location and get the data in cell
     counter+=1
     branchCode="{0}".format(s.cell_value(rowx=3, colx=1))
     ws.write(counter,0,branchCode)
@@ -63,6 +59,7 @@ for s in wb.sheets():
         expired=s.cell_value(rowx=7, colx=3)
         expirationDate=" %s" % expired
         ws.write(counter,4,expirationDate)
+    
     renewalOption= "{0}".format(s.cell_value(rowx=6, colx=5))+' {0}'.format(s.cell_value(rowx=7, colx=5))+' {0}'.format(s.cell_value(rowx=8, colx=5))
     ws.write(counter,5,renewalOption)
     escalationInfo= "{0}".format(s.cell_value(rowx=10, colx=5))+' {0}'.format(s.cell_value(rowx=11, colx=5))+' {0}'.format(s.cell_value(rowx=12, colx=5))+' {0}'.format(s.cell_value(rowx=13, colx=5))
@@ -87,5 +84,4 @@ for s in wb.sheets():
     ws.write(counter,15,space)
     baseYr="{0}".format(s.cell_value(rowx=26, colx=7))
     ws.write(counter,16,baseYr)
-#save the data in the new sheet in the new workbook
 wS.save("example.xls")
